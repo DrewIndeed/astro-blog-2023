@@ -2,13 +2,14 @@
 import MainLayout from "../../layouts/MainLayout.astro";
 import BlogPostCard from "../../components/BlogPostCard.astro";
 import { formatBlogPosts } from "../../scripts/utils";
+import Pagination from "../../components/Pagination.astro";
 export const getStaticPaths = async ({ paginate }) => {
   const allPosts = await Astro.glob("./*.md");
   const formattedPosts = formatBlogPosts(allPosts, {
     filterOutDrafts: false,
     filterOutFuturePosts: false,
   });
-  return paginate(formattedPosts, { pageSize: 3 });
+  return paginate(formattedPosts, { pageSize: 2 });
 };
 const { page } = Astro.props;
 ---
@@ -27,5 +28,6 @@ const { page } = Astro.props;
         ))
       }
     </div>
+    <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
   </div>
 </MainLayout>

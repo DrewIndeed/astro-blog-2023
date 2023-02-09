@@ -17,7 +17,9 @@ const { title = "Default Title", description = "Default Description" } =
   <MainHead {...{title, description}} />
   <body>
     <Nav />
-    <slot>Default Slot Text</slot>
+    <main>
+      <slot>Default Slot Text</slot>
+    </main>
     <Footer />
   </body>
 </html>

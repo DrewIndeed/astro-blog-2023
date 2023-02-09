@@ -1,5 +1,33 @@
 ---
+import Link from "../components/Link.astro";
 import MainLayout from "../layouts/MainLayout.astro";
 ---
 
-<MainLayout title="Home" description="Home Page">This is Home Page</MainLayout>
+<MainLayout title="Home" description="Home Page">
+  <div
+    class="card"
+    style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+  >
+    <h1 class="h1">Andrew Le</h1>
+    <h4 class="h4">This is my first Astro blog site!</h4>
+    <p
+      style={{
+        fontSize: "1rem",
+        display: "flex",
+        gap: "10px",
+        marginTop: "1rem",
+      }}
+    >
+      Check out more at:
+    </p>
+    <div
+      style={{
+        display: "flex",
+        gap: "10px",
+      }}
+    >
+      <Link href="/about/" style="secondary" text="About Me" />
+      <Link href="/blog/" style="secondary" text="Blog Post" />
+    </div>
+  </div>
+</MainLayout>

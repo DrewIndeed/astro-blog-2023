@@ -1,0 +1,41 @@
+---
+import BlogPostCard from "../../components/BlogPostCard.astro";
+import MainLayout from "../../layouts/MainLayout.astro";
+import { formatBlogPosts, slugify } from "../../scripts/utils";
+
+export async function getStaticPaths() {
+  const ALL_CATE = ["Reference Docs", "General", "CSS", "Astro"];
+  return ALL_CATE.map((cate) => ({
+    params: { category: slugify(cate) },
+    props: { name: cate },
+  }));
+}
+const { category } = Astro.params;
+const { name } = Astro.props;
+
+const allPosts = await Astro.glob("../blog/*.md");
+const formattedPosts = formatBlogPosts(allPosts, {
+  filterOutDrafts: false,
+  filterOutFuturePosts: false,
+});
+const filterredByCatePosts = formattedPosts.filter(
+  (post) => slugify(post.frontmatter.category) === category
+);
+---
+
+<MainLayout title={`Posts about ${name}`} description={`Posts about ${name}`}>
+  <div class="container" aria-label="New Blog Posts">
+    <h1 class="h1">Posts about {name}</h1>
+    <div class="post-container">
+      {
+        filterredByCatePosts.map((post) => (
+          <BlogPostCard
+            frontmatter={post.frontmatter}
+            url={post.url}
+            tagType="h2"
+          />
+        ))
+      }
+    </div>
+  </div>
+</MainLayout>

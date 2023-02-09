@@ -12,14 +12,16 @@ const formattedPosts = formatBlogPosts(allPosts, {
 <MainLayout title="Blog" description="Blog Main Page">
   <div class="container" aria-label="New Blog Posts">
     <h1 class="h1">New Blog Posts</h1>
-    {
-      formattedPosts.map((post) => (
-        <BlogPostCard
-          frontmatter={post.frontmatter}
-          url={post.url}
-          tagType="h2"
-        />
-      ))
-    }
+    <div class="post-container">
+      {
+        formattedPosts.map((post) => (
+          <BlogPostCard
+            frontmatter={post.frontmatter}
+            url={post.url}
+            tagType="h2"
+          />
+        ))
+      }
+    </div>
   </div>
 </MainLayout>

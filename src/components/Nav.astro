@@ -1,5 +1,6 @@
 ---
 import { Icon } from "astro-icon";
+import Link from "../components/Link.astro";
 import navData from "../data/nav";
 ---
 
@@ -9,7 +10,21 @@ import navData from "../data/nav";
       <Icon name="logomark" width="60" /></a
     >
     <ul>
-      {navData.map((item) => <a href={item.path}>{item.name}</a>)}
+      {
+        navData.map((item) => (
+          <Link
+            href={item.path}
+            text={item.name}
+            style="secondary"
+            isFilled={false}
+            data-navLink
+          />
+        ))
+      }
     </ul>
   </div>
 </nav>
+
+<script>
+  import "../scripts/nav";
+</script>

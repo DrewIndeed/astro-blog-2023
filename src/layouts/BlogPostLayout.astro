@@ -2,11 +2,12 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import PostHeader from "../components/BlogPostHeader.astro";
 import CategoryCloud from "../components/CategoryCloud.astro";
-import { formatBlogPosts  } from "../scripts/utils";
+import { formatBlogPosts } from "../scripts/utils";
 import RelatedPosts from "../components/RelatedPosts.astro";
 
 const { frontmatter } = Astro.props;
-const { title, description, date, category, author, image } = frontmatter;
+const { title, description, date, category, author, image, robots } =
+  frontmatter;
 
 const allPosts = await Astro.glob("../pages/blog/*.md");
 const formattedPosts = formatBlogPosts(allPosts, {
@@ -23,7 +24,7 @@ const relatedPosts = formattedPosts
   .slice(0, 3);
 ---
 
-<MainLayout {title} {description}>
+<MainLayout {title} {description} {frontmatter} {image} {robots}>
   <PostHeader {...{ title, date, category, author, image }} />
 
   <div class="post-content">

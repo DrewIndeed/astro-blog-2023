@@ -1,11 +1,13 @@
 ---
-interface Props {
-  title?: string;
-  description?: string;
-}
+import Seo from "../components/Seo.astro";
 
-const { title = "Default Title", description = "Default Description" } =
-  Astro.props as Props;
+const {
+  title = "Default Title",
+  description = "Default Description",
+  image,
+  frontmatter,
+  robots,
+} = Astro.props;
 ---
 
 <head>
@@ -14,5 +16,6 @@ const { title = "Default Title", description = "Default Description" } =
   <meta name="viewport" content="width=device-width" />
   <meta name="generator" content={Astro.generator} />
   <meta name="description" content={description} />
+  <Seo {title} {description} url={Astro.url} {image} {frontmatter} {robots} />
   <title>{title}</title>
 </head>

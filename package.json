@@ -12,6 +12,7 @@
   "license": "MIT",
   "dependencies": {
     "@astrojs/image": "^0.14.1",
+    "@astrojs/partytown": "^1.0.3",
     "@astrojs/react": "^2.0.2",
     "@astrojs/rss": "^2.1.0",
     "@astrojs/sitemap": "^1.0.1",
